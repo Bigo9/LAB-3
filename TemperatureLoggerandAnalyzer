@@ -1,0 +1,65 @@
+#include "TempAnalyzer.h"
+
+#include <iostream>
+using namespace std;
+#include <iomanip>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    int days;
+    double temperature;
+
+    ofstream outfile;
+    outfile.open ("tempatures.txt");
+    cout << "How many days of temperatures would you like to record? ";
+    cin >> days;
+
+    for (int i = 1; i <= days; i++)
+    {
+        cout << "Enter temperature for Day " << i << ": ";
+        cin >> temperature;
+        outfile << temperature << endl;
+    }
+
+    outfile.close();
+
+    return 0;
+}
+
+
+int main() {
+    int days = 0;
+    double sum = 0;
+    double temp = 0;
+
+    ifstream inputFile;
+    inputFile.open("temperatures.txt");
+
+    while(inputFile >> temp) {
+        days += 1;
+        sum += temp;
+    }
+
+    inputFile.close();
+
+    double average = sum / days;
+
+    cout << "Temperatures analyzed for " << days << " days." << endl;
+    cout << fixed << setprecision(1) << "The average temperature was: " << average << endl;
+
+    return 0;
+}
+
+
+#ifndef TEMPLOGGER_TEMPANALYZER_H
+#define TEMPLOGGER_TEMPANALYZER_H
+
+
+class TempAnalyzer {
+};
+
+
+#endif //TEMPLOGGER_TEMPANALYZER_H
